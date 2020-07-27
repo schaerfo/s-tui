@@ -77,6 +77,7 @@ from s_tui.sources.temp_source import TempSource
 from s_tui.sources.rapl_power_source import RaplPowerSource
 from s_tui.sources.fan_source import FanSource
 from s_tui.sources.script_hook_loader import ScriptHookLoader
+from s_tui.sources.amdgpu_power import AmdgpuPowerSource
 
 UPDATE_INTERVAL = 1
 HOOK_INTERVAL = 30 * 1000
@@ -648,7 +649,8 @@ class GraphController:
                             FreqSource(),
                             UtilSource(),
                             RaplPowerSource(),
-                            FanSource()]
+                            FanSource(),
+                            AmdgpuPowerSource()]
 
         # Load sensors config if available
         sources = [x.get_source_name() for x in possible_sources
@@ -893,7 +895,8 @@ def main():
         sources = [FreqSource(), TempSource(),
                    UtilSource(),
                    RaplPowerSource(),
-                   FanSource()]
+                   FanSource(),
+                   AmdgpuPowerSource()]
         if args.terminal:
             output_to_terminal(sources)
         elif args.json:
